@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>LOGIN</title>
   {% load i18n %}
   {% load account socialaccount %}
   {% load static %}
   {% get_providers as socialaccount_providers %}
   <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
+
 <body>
-  <div>
-    <strong>Menu:</strong>
-    <ul>
-      {% if user.is_authenticated %}
-      <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-      <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-      {% else %}
-      <li><a href="{% url 'account_login' %}">Sign In</a></li>
-      <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-      {% endif %}
-    </ul>
-  </div>
-
-
-
   <div class="top">
     <p class="title_text">登入</p>
-</div>        
-<div class="welcome">
+  </div>
+  <div class="welcome">
     <p class="welcome_text">歡迎來到xxx</p>
-    <p>請選擇下列其中一種方式進行實名制</p> 
-</div>
-<div class="input_frame">
+    <p>請選擇下列其中一種方式進行實名制</p>
+  </div>
+  <div class="input_frame">
     <a href="{% provider_login_url 'line' %}" class="LINE"> LINE驗證 </a>
-</div>
-<div class="input_frame">
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn_line">{% trans "LINE登入" %}</button>
+  </form>
+  <div class="input_frame">
     <a href="register.html" class="msg"> 簡訊驗證 </a>
-</div>
+  </div>
 </body>
+
 </html>

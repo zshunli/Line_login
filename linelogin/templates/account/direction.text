@@ -1,0 +1,58 @@
+login.html
+繼承模板
+{% extends "account/base.html" %}
+載入功能
+{% load i18n %}
+{% load account socialaccount %}
+標題名稱
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+first block top
+{% block content %}
+
+翻譯sign in
+<h1>{% trans "Sign In" %}</h1>
+
+取得providers
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+blocktrans top
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+  of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+  for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+blockteans end
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+插入login_extra檔
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+  前往line按鈕登入
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+忘記密碼與前往帳密登入
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form>
+
+{% endblock %}
+first block end
+------------------------------------------------------------------------

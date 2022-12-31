@@ -34,7 +34,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 #ACCOUNT_EMAIL_VERIFICATION = 'none'
-LOGIN_REDIRECT_URL = 'line/login/callback/'
+#設定登入後跳轉
+#LOGIN_REDIRECT_URL = 'line/login/callback/'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,7 +65,7 @@ INSTALLED_APPS = [
     #my app
     "loginapp",
     # allauth
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
