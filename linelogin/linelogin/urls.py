@@ -19,7 +19,7 @@ from loginapp import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.login),
+    path("", views.index),
     #path("register/", views.register),
     path('accounts/', include('allauth.urls')),
 ]

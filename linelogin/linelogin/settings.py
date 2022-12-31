@@ -19,7 +19,7 @@ AUTHENTICATION_BACKENDS = (
 )
 SITE_ID = 2
 #跳過點擊登出
-#ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_PROVIDERS = {
     "line": {
         'APP': {
@@ -36,6 +36,7 @@ SOCIALACCOUNT_PROVIDERS = {
 #ACCOUNT_EMAIL_VERIFICATION = 'none'
 #設定登入後跳轉
 #LOGIN_REDIRECT_URL = 'line/login/callback/'
+LOGIN_REDIRECT_URL = "/"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

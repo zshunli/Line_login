@@ -1,8 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-def login(request):
-    return render(request, 'account/login.html', locals())
+def index(request):
+    return render(request, 'index.html', locals())
 
-def register(request):
-    return render(request, 'register.html', locals())

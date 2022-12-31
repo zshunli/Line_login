@@ -21,16 +21,19 @@
     <p class="welcome_text">歡迎來到xxx</p>
     <p>請選擇下列其中一種方式進行實名制</p>
   </div>
-  <div class="input_frame">
-    <a href="{% provider_login_url 'line' %}" class="LINE"> LINE驗證 </a>
+  <div>
+    <form class="input_frame" method="post">
+      {% csrf_token %}
+      <button class="btn_line" type="submit">{% trans "LINE驗證" %}</button>
+    </form>
   </div>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn_line">{% trans "LINE登入" %}</button>
-  </form>
   <div class="input_frame">
-    <a href="register.html" class="msg"> 簡訊驗證 </a>
+    <!--<form class="input_frame" method="post">-->
+      {% csrf_token %}
+      <button class="msg" type="submit">{% trans "簡訊驗證" %}</button>
+    <!--</form>-->
   </div>
+  
 </body>
 
 </html>
