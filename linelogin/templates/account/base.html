@@ -25,17 +25,13 @@
 
     <!--固定列 top-->
     <div>
-      <strong>Menu:</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
-    </div>
+      {% if user.is_authenticated %}
+      <!--若登入則顯示登出-->
+      <a href="{% url 'account_logout' %}">登出</a>
+      {% else %}
+      <a href="{% provider_login_url 'line' %}"> 登入 </a><br>
+      {% endif %}
+  </div>
     <!--固定列 end-->
 
     {% block content %}

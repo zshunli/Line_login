@@ -56,3 +56,9 @@ blockteans end
 {% endblock %}
 first block end
 ------------------------------------------------------------------------
+account/messages/logged_out.text
+{% load account %}
+{% load i18n %}
+{% user_display user as name %}
+{% blocktrans %}歡迎{{name}}！您已成功登入！{% endblocktrans %}
+#控制message不要顯示過多

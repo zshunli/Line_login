@@ -3,19 +3,19 @@
 <div>
     {% if user.is_authenticated %}
     <!--若登入則顯示登出-->
-    <a href="{% url 'account_logout' %}">登出</a>
+    <a href="{% url 'account_logout' %}">登出</a><br>
+    {% load account %}
+    {% load i18n %}
+    {% user_display user as name %}
+    {% blocktrans %}歡迎{{name}}！{% endblocktrans %}
     {% else %}
     <a href="{% provider_login_url 'line' %}"> 登入 </a><br>
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </div>
+        {% endif %}
     {% endif %}
 </div>
-
-{% if messages %}
-<div>
-    <strong>Messages:</strong>
-    <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endif %}
